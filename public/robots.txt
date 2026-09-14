@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio-flax-ten-53.vercel.app/sitemap-index.xml
+Sitemap: https://portfolio-ahmed-el-tlawy.vercel.app/sitemap-index.xml
