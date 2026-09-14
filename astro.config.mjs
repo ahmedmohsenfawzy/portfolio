@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://portfolio-flax-ten-53.vercel.app',
+  site: 'https://portfolio-ahmed-el-tlawy.vercel.app/',
   integrations: [
     sitemap()
   ],
