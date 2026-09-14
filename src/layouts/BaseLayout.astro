@@ -1,0 +1,173 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { PERSONAL_INFO } from '../data/portfolio-data';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = `${PERSONAL_INFO.name} | Data Engineer & Analytics Infrastructure`,
+  description = PERSONAL_INFO.summary,
+  image = "/og-image.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://portfolio-flax-ten-53.vercel.app");
+
+// JSON-LD structured data for Google & technical search indexing
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": PERSONAL_INFO.name,
+      "jobTitle": PERSONAL_INFO.title,
+      "description": PERSONAL_INFO.summary,
+      "email": `mailto:${PERSONAL_INFO.email}`,
+      "telephone": PERSONAL_INFO.phone,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nasr City, Cairo",
+        "addressCountry": "EG"
+      },
+      "sameAs": [
+        PERSONAL_INFO.github.url,
+        PERSONAL_INFO.linkedin.url
+      ],
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Ain Shams University"
+      },
+      "knowsAbout": [
+        "Data Engineering",
+        "Apache Kafka",
+        "Snowflake",
+        "ClickHouse",
+        "Medallion Architecture",
+        "dbt",
+        "Apache Airflow",
+        "Python",
+        "SQL"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "name": `${PERSONAL_INFO.name} Portfolio`,
+      "url": canonicalURL.toString(),
+      "description": description
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={PERSONAL_INFO.name} />
+    <meta name="theme-color" content="#07090e" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+    <meta property="og:site_name" content={`${PERSONAL_INFO.name} Portfolio`} />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts Optimization: Preconnect & Display Swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" 
+      rel="stylesheet" 
+    />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-dark-950 text-slate-100 antialiased">
+    <!-- Accessible Skip Link -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-cyan-400 text-slate-950 font-mono font-bold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Header Navigation -->
+    <Header />
+
+    <!-- Main Content Slot -->
+    <main id="main-content" class="min-h-screen">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+
+    <!-- High-Performance Scroll Observer & Safe Smooth Anchor Scroll -->
+    <script>
+      const initPage = () => {
+        // Safe smooth scroll for anchor links only (avoids browser text selection deadlock)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', (e) => {
+            const href = anchor.getAttribute('href');
+            if (href && href !== '#') {
+              const target = document.querySelector(href);
+              if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          });
+        });
+
+        // Respect prefers-reduced-motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              el.classList.add('is-revealed');
+              obs.unobserve(el);
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: '0px 0px -40px 0px',
+          threshold: 0.05
+        });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPage);
+      } else {
+        initPage();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+---
+import Icon from './icons/Icon.astro';
+import { PERSONAL_INFO } from '../data/portfolio-data';
+---
+
+<section id="about" class="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+  <!-- Blueprint Grid and Ambient Radial Glow -->
+  <div class="absolute inset-0 bg-grid-pattern opacity-60 pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-3/4 max-w-4xl h-96 bg-radial-gradient pointer-events-none" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Bio & Core Positioning -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Terminal Status Pill -->
+        <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 shadow-inner font-mono text-xs text-slate-300">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-slate-400">DATA_PIPELINE:</span>
+          <span class="text-cyan-300 font-semibold">ONLINE & SCALING</span>
+          <span class="text-slate-600">|</span>
+          <span class="text-slate-400">CAIRO, EG</span>
+        </div>
+
+        <!-- Main Headline -->
+        <div class="space-y-3">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-emerald-400">{PERSONAL_INFO.name}</span>
+          </h1>
+          <p class="text-xl sm:text-2xl font-mono text-cyan-300/90 font-medium">
+            Data Engineer & Analytics Infrastructure
+          </p>
+        </div>
+
+        <!-- Summary Prose -->
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+          {PERSONAL_INFO.summary}
+        </p>
+
+        <!-- Proven Credentials Badges -->
+        <div class="flex flex-wrap gap-2.5 pt-2">
+          <div class="flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 border border-cyan-500/30 text-xs font-mono text-cyan-300">
+            <Icon name="snowflake" size={14} class="text-cyan-400" />
+            <span>SnowPro Associate (Snowflake)</span>
+          </div>
+          <div class="flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+            <Icon name="airflow" size={14} class="text-emerald-400" />
+            <span>Astronomer Airflow 3 Certified</span>
+          </div>
+          <div class="flex items-center gap-2 px-3 py-1 rounded-md bg-slate-900 border border-indigo-500/30 text-xs font-mono text-indigo-300">
+            <Icon name="layers" size={14} class="text-indigo-400" />
+            <span>ITI Data Engineering Track</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a 
+            href="#architecture" 
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold font-mono text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-cyan-300"
+          >
+            <Icon name="pipeline" size={18} />
+            <span>View Architecture</span>
+          </a>
+
+          <a 
+            href="#projects" 
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold font-mono text-slate-200 bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 transition-all hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-slate-500"
+          >
+            <Icon name="database" size={18} />
+            <span>Featured Projects</span>
+          </a>
+
+          <a 
+            href={PERSONAL_INFO.github.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-mono text-slate-400 hover:text-white bg-slate-950/60 hover:bg-slate-900 border border-slate-800 transition-colors"
+            title="Inspect GitHub Repositories"
+          >
+            <Icon name="github" size={18} />
+            <span class="sr-only">GitHub</span>
+          </a>
+
+          <a 
+            href={PERSONAL_INFO.linkedin.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-mono text-slate-400 hover:text-cyan-400 bg-slate-950/60 hover:bg-slate-900 border border-slate-800 transition-colors"
+            title="Connect on LinkedIn"
+          >
+            <Icon name="linkedin" size={18} />
+            <span class="sr-only">LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Live Telemetry & Engineering Node Inspector -->
+      <div class="lg:col-span-5">
+        <div class="glass-card rounded-2xl p-5 border border-slate-800 shadow-xl relative overflow-hidden">
+          
+          <!-- Terminal Window Header -->
+          <div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-slate-800/80">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+              <span class="font-mono text-xs text-slate-400 ml-1.5 font-medium">pipeline_telemetry.sys</span>
+            </div>
+            <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 font-mono text-[10px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>LIVE</span>
+            </div>
+          </div>
+
+          <!-- Minimal Real-Time Telemetry Stream -->
+          <div class="space-y-2.5 font-mono text-xs">
+            
+            <!-- Ingestion -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800/60 flex items-center justify-between">
+              <div class="flex items-center gap-2 text-slate-300">
+                <Icon name="workflow" size={14} class="text-cyan-400 flex-shrink-0" />
+                <span class="text-slate-200">Kafka Streaming</span>
+              </div>
+              <span class="text-cyan-300 font-medium text-[11px]">2,450 msg/s</span>
+            </div>
+
+            <!-- OLAP -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800/60 flex items-center justify-between">
+              <div class="flex items-center gap-2 text-slate-300">
+                <Icon name="chart" size={14} class="text-emerald-400 flex-shrink-0" />
+                <span class="text-slate-200">ClickHouse OLAP</span>
+              </div>
+              <span class="text-emerald-300 font-medium text-[11px]">&lt;14ms latency</span>
+            </div>
+
+            <!-- Medallion Lakehouse -->
+            <div class="p-3 rounded-lg bg-slate-950/60 border border-slate-800/60 flex items-center justify-between">
+              <div class="flex items-center gap-2 text-slate-300">
+                <Icon name="database" size={14} class="text-indigo-400 flex-shrink-0" />
+                <span class="text-slate-200">Snowflake Lakehouse</span>
+              </div>
+              <span class="text-slate-400 text-[11px]">Bronze &rarr; Silver &rarr; Gold</span>
+            </div>
+
+            <!-- Active Line Indicator -->
+            <div class="w-full bg-slate-900 h-1 rounded-full overflow-hidden">
+              <div class="pipeline-stream-active h-full w-full rounded-full"></div>
+            </div>
+
+          </div>
+
+          <!-- Compact Footer Status -->
+          <div class="mt-3.5 pt-3 border-t border-slate-800/60 flex justify-between items-center text-[11px] font-mono text-slate-400">
+            <span>dbt &middot; Dagster &middot; Airflow 3</span>
+            <span class="text-emerald-400">Quality: 100% Passed</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ArchitectureViewer from '../components/ArchitectureViewer.astro';
+import Projects from '../components/Projects.astro';
+import SkillsMatrix from '../components/SkillsMatrix.astro';
+import CertificationsTimeline from '../components/CertificationsTimeline.astro';
+import Contact from '../components/Contact.astro';
+import { PERSONAL_INFO } from '../data/portfolio-data';
+---
+
+<BaseLayout 
+  title={`${PERSONAL_INFO.name} | Data Engineer & Analytics Infrastructure`}
+  description={PERSONAL_INFO.summary}
+>
+  <Hero />
+  <ArchitectureViewer />
+  <Projects />
+  <SkillsMatrix />
+  <CertificationsTimeline />
+  <Contact />
+</BaseLayout>

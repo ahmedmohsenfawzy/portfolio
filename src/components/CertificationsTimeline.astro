@@ -1,0 +1,108 @@
+---
+import Icon from './icons/Icon.astro';
+import { CERTIFICATIONS, TIMELINE } from '../data/portfolio-data';
+---
+
+<section id="certifications" class="py-20 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-12 space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-mono text-xs">
+        <Icon name="award" size={14} />
+        <span>CREDENTIALS & BACKGROUND</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Certifications & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">Professional Journey</span>
+      </h2>
+      <p class="text-slate-400 text-base">
+        Validated industry credentials from Snowflake and Astronomer, paired with intensive data engineering training at ITI and an Information Systems degree from Ain Shams University.
+      </p>
+    </div>
+
+    <!-- Certifications Grid -->
+    <div class="mb-16">
+      <h3 class="text-lg font-bold font-mono text-slate-200 mb-6 flex items-center gap-2">
+        <Icon name="award" size={18} class="text-cyan-400" />
+        <span>Industry Certifications & Badges</span>
+      </h3>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {CERTIFICATIONS.map((cert) => (
+          <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between hover:border-cyan-500/40 transition-all reveal-on-scroll">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-cyan-400">
+                  <Icon name={cert.icon} size={22} />
+                </div>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-800/40">
+                  {cert.status}
+                </span>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white leading-snug">{cert.name}</h4>
+                <p class="text-xs text-slate-400 mt-1 font-mono">{cert.issuer}</p>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>{cert.type}</span>
+              <span class="text-cyan-400">{cert.date}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Timeline & Education Journey -->
+    <div>
+      <h3 class="text-lg font-bold font-mono text-slate-200 mb-6 flex items-center gap-2">
+        <Icon name="workflow" size={18} class="text-emerald-400" />
+        <span>Academic Education & Intensive Training</span>
+      </h3>
+
+      <div class="space-y-6 relative before:absolute before:inset-0 before:left-4 md:before:left-1/2 before:w-0.5 before:bg-slate-800">
+        {TIMELINE.map((item, index) => (
+          <div class="relative flex flex-col md:flex-row items-start gap-6 group reveal-on-scroll">
+            
+            <!-- Timeline Center Marker -->
+            <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-slate-950 border-2 border-cyan-400 shadow-[0_0_10px_#38bdf8] mt-6 z-10"></div>
+
+            <!-- Left / Right alternating cards on desktop -->
+            <div class={`w-full md:w-1/2 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-10 md:text-right' : 'md:pl-10 md:ml-auto'}`}>
+              <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-cyan-500/40 transition-all text-left">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-950/80 text-cyan-300 border border-cyan-500/40">
+                    {item.type}
+                  </span>
+                  <span class="text-xs font-mono text-slate-400">{item.period}</span>
+                </div>
+
+                <h4 class="text-base font-bold text-white mb-1">{item.role}</h4>
+                <p class="text-xs font-mono text-slate-400 mb-3">{item.organization} &middot; {item.location}</p>
+
+                <ul class="text-xs text-slate-300 space-y-2 mb-4">
+                  {item.highlights.map((h) => (
+                    <li class="flex items-start gap-2">
+                      <Icon name="check" size={14} class="text-cyan-400 mt-0.5 flex-shrink-0" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-800/80">
+                  {item.technologies.map((tech) => (
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-900 text-slate-300 border border-slate-800">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

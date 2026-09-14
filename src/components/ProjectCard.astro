@@ -1,0 +1,120 @@
+---
+import Icon from './icons/Icon.astro';
+import type { Project } from '../data/portfolio-data';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+// Determine accent styling based on project
+const getBadgeStyles = (color: string) => {
+  switch (color) {
+    case 'cyan':
+      return 'bg-cyan-950/80 text-cyan-300 border-cyan-500/40';
+    case 'emerald':
+      return 'bg-emerald-950/80 text-emerald-300 border-emerald-500/40';
+    case 'indigo':
+      return 'bg-indigo-950/80 text-indigo-300 border-indigo-500/40';
+    case 'amber':
+      return 'bg-amber-950/80 text-amber-300 border-amber-500/40';
+    case 'rose':
+      return 'bg-rose-950/80 text-rose-300 border-rose-500/40';
+    default:
+      return 'bg-slate-900 text-slate-300 border-slate-700';
+  }
+};
+---
+
+<article class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative group reveal-on-scroll">
+  <div>
+    <!-- Top Metadata -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-800">
+      <div class="flex items-center gap-2">
+        <span class={`px-2.5 py-1 rounded-md text-xs font-mono font-medium border ${getBadgeStyles(project.accentColor)}`}>
+          {project.badge}
+        </span>
+        <span class="text-xs font-mono text-slate-400">
+          {project.category}
+        </span>
+      </div>
+
+      <!-- GitHub Link -->
+      <a 
+        href={project.githubUrl} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-cyan-400 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded px-1.5 py-0.5"
+        aria-label={`View ${project.title} on GitHub`}
+      >
+        <span>GitHub</span>
+        <Icon name="external-link" size={12} />
+      </a>
+    </div>
+
+    <!-- Title & Subtitle -->
+    <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+      {project.title}
+    </h3>
+    <p class="text-sm font-mono text-slate-400 mt-1 mb-4">
+      {project.subtitle}
+    </p>
+
+    <!-- Problem Context -->
+    <div class="mb-4 p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80">
+      <div class="text-[11px] font-mono font-semibold uppercase text-amber-400/90 mb-1 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+        <span>The Problem</span>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        {project.problem}
+      </p>
+    </div>
+
+    <!-- Solution & Engineering Highlights -->
+    <div class="mb-5 space-y-2">
+      <div class="text-[11px] font-mono font-semibold uppercase text-cyan-400/90 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+        <span>Architecture & Implementation</span>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        {project.solution}
+      </p>
+      
+      <ul class="pt-2 space-y-1.5">
+        {project.architectureDetails.map((detail) => (
+          <li class="text-xs text-slate-400 flex items-start gap-2">
+            <Icon name="chevron-right" size={14} class="text-cyan-400 mt-0.5 flex-shrink-0" />
+            <span>{detail}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Key Metrics / Proof Points -->
+    <div class="mb-6">
+      <div class="text-[11px] font-mono uppercase text-slate-400 mb-2">Key Engineering Outcomes</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {project.metrics.map((metric) => (
+          <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-900/60 border border-slate-800 text-xs font-mono text-slate-300">
+            <Icon name="check" size={13} class="text-emerald-400 flex-shrink-0" />
+            <span class="truncate" title={metric}>{metric}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech Stack Badges -->
+  <div class="pt-4 border-t border-slate-800/80">
+    <div class="text-[11px] font-mono text-slate-400 mb-2">Technologies & Architecture</div>
+    <div class="flex flex-wrap gap-1.5">
+      {project.tools.map((tool) => (
+        <span class="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-950 text-slate-300 border border-slate-800">
+          {tool}
+        </span>
+      ))}
+    </div>
+  </div>
+</article>

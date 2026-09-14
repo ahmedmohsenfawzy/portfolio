@@ -1,0 +1,40 @@
+---
+import { PERSONAL_INFO } from '../data/portfolio-data';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="py-12 bg-slate-950 border-t border-slate-900 text-slate-400 font-mono text-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    
+    <!-- Left: Identity -->
+    <div class="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+      <span class="font-bold text-white tracking-wider flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+        <span>{PERSONAL_INFO.name}</span>
+      </span>
+      <span class="hidden sm:inline text-slate-700">|</span>
+      <span>{PERSONAL_INFO.title} &middot; Cairo, Egypt</span>
+    </div>
+
+    <!-- Center: Tech Stack -->
+    <div class="flex items-center gap-2 text-slate-400">
+      <span>Architected with Astro &middot; Tailwind CSS &middot; TypeScript</span>
+    </div>
+
+    <!-- Right: Back to top & Copyright -->
+    <div class="flex items-center gap-4">
+      <span>&copy; {currentYear} Ahmed EL-Tlawy</span>
+      <a 
+        href="#" 
+        class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-cyan-400 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400"
+        aria-label="Back to top of page"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m18 15-6-6-6 6"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</footer>

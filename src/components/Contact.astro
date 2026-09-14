@@ -1,0 +1,167 @@
+---
+import Icon from './icons/Icon.astro';
+import { PERSONAL_INFO, LANGUAGES_AND_SOFT_SKILLS } from '../data/portfolio-data';
+---
+
+<section id="contact" class="py-20 bg-slate-950/60 relative border-t border-slate-800/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left Column: CTA & Positioning -->
+      <div class="lg:col-span-6 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-mono text-xs">
+          <Icon name="mail" size={14} />
+          <span>DIRECT CONTACT & COLLABORATION</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+          Ready to engineer resilient <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">data pipelines?</span>
+        </h2>
+
+        <p class="text-slate-300 text-base leading-relaxed">
+          I am actively exploring Data Engineering and Analytics Engineering opportunities where I can design scalable streaming architectures, Medallion lakehouses, and high-performance warehousing solutions.
+        </p>
+
+        <!-- Languages & Soft Skills Card -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800 space-y-4">
+          <div>
+            <div class="text-xs font-mono text-slate-400 uppercase mb-2">Languages</div>
+            <div class="flex flex-wrap gap-2">
+              {LANGUAGES_AND_SOFT_SKILLS.languages.map((lang) => (
+                <div class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200">
+                  <span class="font-bold text-white">{lang.language}</span> &middot; <span class="text-cyan-400">{lang.proficiency}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800/80">
+            <div class="text-xs font-mono text-slate-400 uppercase mb-2">Professional Work Ethics & Soft Skills</div>
+            <div class="flex flex-wrap gap-1.5">
+              {LANGUAGES_AND_SOFT_SKILLS.softSkills.map((skill) => (
+                <span class="px-2.5 py-1 rounded-md bg-slate-900/90 border border-slate-700/60 text-xs font-mono text-slate-300">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400">
+            <span>Military Status:</span>
+            <span class="text-emerald-400 font-semibold">{PERSONAL_INFO.militaryStatus}</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Direct Contact Info & Interactive Copy Actions -->
+      <div class="lg:col-span-6 space-y-4">
+        
+        <!-- Direct Email Card with 1-Click Copy -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400 uppercase">Primary Email</span>
+            <span class="text-xs font-mono text-cyan-400">Fast Response</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+            <a 
+              href={`mailto:${PERSONAL_INFO.email}`} 
+              class="text-base sm:text-lg font-mono font-bold text-white hover:text-cyan-300 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded"
+            >
+              {PERSONAL_INFO.email}
+            </a>
+            <button 
+              id="copy-email-btn"
+              type="button"
+              data-email={PERSONAL_INFO.email}
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-cyan-300 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400 active:scale-95"
+            >
+              <Icon name="copy" size={14} />
+              <span id="copy-text">Copy Email</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Phone Card -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-1">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 uppercase">
+            <span>Direct Phone / WhatsApp</span>
+            <span>Mobile</span>
+          </div>
+          <div class="pt-1">
+            <a 
+              href={`tel:${PERSONAL_INFO.phone.replace(/\s+/g, '')}`} 
+              class="text-base sm:text-lg font-mono font-bold text-white hover:text-cyan-300 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded"
+            >
+              {PERSONAL_INFO.phone}
+            </a>
+          </div>
+        </div>
+
+        <!-- Location Card -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-1">
+          <div class="text-xs font-mono text-slate-400 uppercase">Location & Mobility</div>
+          <div class="flex items-center gap-2 pt-1 text-base sm:text-lg font-mono text-slate-200">
+            <Icon name="map-pin" size={18} class="text-cyan-400 flex-shrink-0" />
+            <span>{PERSONAL_INFO.location}</span>
+          </div>
+          <p class="text-xs text-slate-400 pt-1 font-mono">Open to onsite, hybrid, and remote roles.</p>
+        </div>
+
+        <!-- Social Profiles Card -->
+        <div class="glass-card rounded-2xl p-6 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="text-xs font-mono text-slate-400 uppercase">Professional Links</div>
+            <div class="text-sm text-slate-300 font-mono mt-0.5">Verified Profiles</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <a 
+              href={PERSONAL_INFO.github.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-white transition-all"
+            >
+              <Icon name="github" size={16} />
+              <span>GitHub</span>
+            </a>
+            <a 
+              href={PERSONAL_INFO.linkedin.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/40 text-xs font-mono text-cyan-300 transition-all"
+            >
+              <Icon name="linkedin" size={16} />
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const copyBtn = document.getElementById('copy-email-btn');
+  const copyText = document.getElementById('copy-text');
+
+  if (copyBtn && copyText) {
+    copyBtn.addEventListener('click', async () => {
+      const email = copyBtn.getAttribute('data-email') || '';
+      try {
+        await navigator.clipboard.writeText(email);
+        copyText.textContent = 'Copied!';
+        copyBtn.classList.add('border-emerald-500/60', 'text-emerald-300');
+        setTimeout(() => {
+          copyText.textContent = 'Copy Email';
+          copyBtn.classList.remove('border-emerald-500/60', 'text-emerald-300');
+        }, 2000);
+      } catch (err) {
+        copyText.textContent = 'Failed to copy';
+      }
+    });
+  }
+</script>
