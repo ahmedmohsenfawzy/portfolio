@@ -5,13 +5,13 @@ import { PROJECTS } from '../data/portfolio-data';
 const categories = ['All', ...new Set(PROJECTS.map((project) => project.category))];
 ---
 
-<section id="projects" class="px-6 sm:px-12 lg:px-20 py-16 md:py-20">
-  <div class="w-full max-w-[1400px] mx-auto grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-12 items-start">
+<section id="projects" class="px-5 sm:px-10 lg:px-14 py-12 md:py-16">
+  <div class="w-full max-w-[1180px] mx-auto grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-10 items-start">
     <div class="xl:col-span-4 xl:sticky xl:top-8">
       <p class="page-tags" aria-hidden="true">&lt;h1&gt;</p>
-      <h1 class="font-display text-6xl sm:text-7xl lg:text-[5.3rem] text-accent mb-3 leading-none">Projects</h1>
-      <p class="page-tags mb-8" aria-hidden="true">&lt;/h1&gt;</p>
-      <p class="text-white text-[17px] sm:text-lg leading-relaxed font-light">
+      <h1 class="font-display text-5xl sm:text-6xl lg:text-[4rem] text-accent mb-2 leading-none">Projects</h1>
+      <p class="page-tags mb-6" aria-hidden="true">&lt;/h1&gt;</p>
+      <p class="text-white text-[15px] sm:text-base leading-relaxed font-light">
         A showcase of data engineering work across streaming platforms, medallion warehouses, dbt analytics, and SSIS dimensional models. Each card links to the matching GitHub repository.
       </p>
       <div class="flex flex-wrap gap-2 mt-6" data-filter-bar>

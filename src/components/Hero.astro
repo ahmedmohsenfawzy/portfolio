@@ -14,11 +14,11 @@ const name = letters(PERSONAL_INFO.name.slice(1), 12);
 const job = letters(PERSONAL_INFO.title, 22);
 ---
 
-<section class="relative min-h-[calc(100vh-4rem)] md:min-h-screen flex items-center px-6 sm:px-12 lg:px-20 py-16">
-  <div class="w-full max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<section class="relative min-h-[calc(100vh-4rem)] md:min-h-screen flex items-center px-5 sm:px-10 lg:px-14 py-12">
+  <div class="w-full max-w-[1180px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
     <div class="lg:col-span-7">
-      <p class="page-tags mb-6" aria-hidden="true">&lt;h1&gt;</p>
-      <h1 class="font-display text-6xl sm:text-7xl lg:text-[5.75rem] leading-[1.02] font-medium text-white">
+      <p class="page-tags mb-4" aria-hidden="true">&lt;h1&gt;</p>
+      <h1 class="font-display text-5xl sm:text-6xl lg:text-[4.25rem] leading-[1.05] font-medium text-white">
         <span class="block">
           {hi.map((item) => (
             <span class="letter" style={`animation-delay: ${item.delay}`}>{item.char}</span>
@@ -28,7 +28,7 @@ const job = letters(PERSONAL_INFO.title, 22);
           {im.map((item) => (
             <span class="letter" style={`animation-delay: ${item.delay}`}>{item.char}</span>
           ))}
-          <span class="inline-flex items-center justify-center mx-2 w-14 h-14 sm:w-16 sm:h-16 rounded-md border border-accent text-accent font-display text-4xl sm:text-5xl align-middle">A</span>
+          <span class="inline-flex items-center justify-center mx-1.5 w-11 h-11 sm:w-12 sm:h-12 rounded-md border border-accent text-accent font-display text-3xl sm:text-4xl align-middle">A</span>
           {name.map((item) => (
             <span class="letter" style={`animation-delay: ${item.delay}`}>{item.char}</span>
           ))}
@@ -41,14 +41,14 @@ const job = letters(PERSONAL_INFO.title, 22);
       </h1>
       <p class="page-tags mt-4" aria-hidden="true">&lt;/h1&gt;</p>
 
-      <p class="fade-in-late mt-6 text-sm sm:text-base tracking-[0.28em] uppercase text-[#8d8d8d]">
+      <p class="fade-in-late mt-5 text-xs sm:text-sm tracking-[0.24em] uppercase text-[#8d8d8d]">
         Streaming Pipelines | Medallion Warehouses | ELT / ETL
       </p>
-      <p class="fade-in-late mt-4 max-w-2xl text-[17px] sm:text-lg text-slate-300 leading-relaxed">
+      <p class="fade-in-late mt-3 max-w-xl text-[15px] sm:text-base text-slate-300 leading-relaxed">
         {PERSONAL_INFO.tagline}
       </p>
 
-      <a href="/contact" class="flat-button fade-in-late mt-8">Contact me</a>
+      <a href="/contact" class="flat-button fade-in-late mt-6">Contact me</a>
     </div>
 
     <div class="lg:col-span-5 flex justify-center lg:justify-end fade-in-late">

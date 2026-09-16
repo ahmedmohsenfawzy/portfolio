@@ -1,21 +1,21 @@
 ---
 ---
 
-<section id="skills" class="relative min-h-[calc(100vh-4rem)] md:min-h-screen flex items-center px-6 sm:px-10 lg:px-16 py-12">
-  <div class="w-full max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center">
+<section id="skills" class="relative min-h-[calc(100vh-4rem)] md:min-h-screen flex items-center px-5 sm:px-10 lg:px-14 py-10">
+  <div class="w-full max-w-[1180px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
     <div class="lg:col-span-5">
       <p class="page-tags" aria-hidden="true">&lt;h1&gt;</p>
-      <h1 class="font-display text-6xl sm:text-7xl lg:text-[5.3rem] text-accent mb-2 leading-none">Skills</h1>
-      <p class="page-tags mb-8" aria-hidden="true">&lt;/h1&gt;</p>
-      <p class="text-white text-[17px] sm:text-lg leading-relaxed mb-6 max-w-xl font-light">
+      <h1 class="font-display text-5xl sm:text-6xl lg:text-[4rem] text-accent mb-2 leading-none">Skills</h1>
+      <p class="page-tags mb-6" aria-hidden="true">&lt;/h1&gt;</p>
+      <p class="text-white text-[15px] sm:text-base leading-relaxed mb-5 max-w-xl font-light">
         I have a strong foundation in data engineering, with a focus on creating seamless, efficient systems. My experience includes automating pipeline workflows, designing scalable warehouses, and working with cloud platforms to deliver reliable solutions.
       </p>
-      <p class="text-white text-[17px] sm:text-lg leading-relaxed max-w-xl font-light">
+      <p class="text-white text-[15px] sm:text-base leading-relaxed max-w-xl font-light">
         My skill set spans streaming, analytics engineering, data warehousing, and BI. I’m committed to staying updated with the latest tools from my CV and continually refining that stack to tackle complex data problems effectively.
       </p>
     </div>
 
-    <div class="lg:col-span-7 flex justify-center items-center min-h-[480px] lg:min-h-[640px]">
+    <div class="lg:col-span-7 flex justify-center items-center min-h-[360px] lg:min-h-[480px]">
       <div id="skill-tagcloud" class="tagcloud-wrap" aria-label="Animated skills cloud"></div>
     </div>
   </div>
@@ -48,7 +48,7 @@
     container.replaceChildren();
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const radius = window.innerWidth >= 1280 ? 300 : window.innerWidth >= 768 ? 230 : 160;
+    const radius = window.innerWidth >= 1280 ? 230 : window.innerWidth >= 768 ? 175 : 125;
 
     instance = createCloud('#skill-tagcloud', [...CLOUD_SKILLS], {
       radius,

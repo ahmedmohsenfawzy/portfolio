@@ -16,6 +16,7 @@
   html {
     background: #181818;
     color: #fff;
+    font-size: 15px;
     scroll-behavior: smooth;
   }
 
@@ -35,7 +36,7 @@
 .page-tags {
   color: var(--accent);
   font-family: 'La Belle Aurore', cursive;
-  font-size: 1.25rem;
+  font-size: 1rem;
   opacity: 0.85;
   pointer-events: none;
   user-select: none;
@@ -45,10 +46,10 @@
   display: inline-flex;
   align-items: center;
   color: var(--accent);
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  padding: 0.85rem 1.35rem;
+  padding: 0.65rem 1.1rem;
   border: 1px solid var(--accent);
   border-radius: 0.4rem;
   transition: background 0.2s ease, color 0.2s ease;
@@ -216,9 +217,9 @@
 }
 
 .stage-cube {
-  width: 280px;
-  height: 280px;
-  perspective: 1800px;
+  width: 210px;
+  height: 210px;
+  perspective: 1400px;
 }
 
 .cubespinner {
@@ -231,37 +232,37 @@
 
 .cubespinner div {
   position: absolute;
-  width: 280px;
-  height: 280px;
+  width: 210px;
+  height: 210px;
   border: 1px solid var(--accent);
   background: rgba(2, 44, 67, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: Oswald, sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.08em;
   color: var(--accent);
   text-transform: uppercase;
 }
 
 .cubespinner .face1 {
-  transform: translateZ(140px);
+  transform: translateZ(105px);
 }
 .cubespinner .face2 {
-  transform: rotateY(90deg) translateZ(140px);
+  transform: rotateY(90deg) translateZ(105px);
 }
 .cubespinner .face3 {
-  transform: rotateY(180deg) translateZ(140px);
+  transform: rotateY(180deg) translateZ(105px);
 }
 .cubespinner .face4 {
-  transform: rotateY(-90deg) translateZ(140px);
+  transform: rotateY(-90deg) translateZ(105px);
 }
 .cubespinner .face5 {
-  transform: rotateX(90deg) translateZ(140px);
+  transform: rotateX(90deg) translateZ(105px);
 }
 .cubespinner .face6 {
-  transform: rotateX(-90deg) translateZ(140px);
+  transform: rotateX(-90deg) translateZ(105px);
 }
 
 @keyframes cubespin {
@@ -397,7 +398,7 @@
 
 .tagcloud-wrap {
   width: 100%;
-  min-height: 480px;
+  min-height: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -406,7 +407,7 @@
 .tagcloud {
   color: #ff4500 !important;
   font-family: Inter, 'Helvetica Neue', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 650;
   margin: 0 auto;
 }
@@ -422,7 +423,7 @@
 
 @media (min-width: 1280px) {
   .tagcloud {
-    font-size: 22px;
+    font-size: 18px;
   }
 }
 
