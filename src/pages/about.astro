@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import About from '../components/About.astro';
+import { PERSONAL_INFO } from '../data/portfolio-data';
+---
+
+<BaseLayout title={`About | ${PERSONAL_INFO.name}`} description={PERSONAL_INFO.summary}>
+  <About />
+</BaseLayout>

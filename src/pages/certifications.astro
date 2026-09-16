@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CertificationsTimeline from '../components/CertificationsTimeline.astro';
+import { PERSONAL_INFO } from '../data/portfolio-data';
+---
+
+<BaseLayout
+  title={`Journey | ${PERSONAL_INFO.name}`}
+  description="Certifications, intensive training, and academic background."
+>
+  <CertificationsTimeline />
+</BaseLayout>

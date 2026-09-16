@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Projects from '../components/Projects.astro';
+import { PERSONAL_INFO } from '../data/portfolio-data';
+---
+
+<BaseLayout
+  title={`Projects | ${PERSONAL_INFO.name}`}
+  description="Featured data engineering projects and case studies."
+>
+  <Projects />
+</BaseLayout>

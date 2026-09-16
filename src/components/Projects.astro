@@ -1,84 +1,55 @@
 ---
-import Icon from './icons/Icon.astro';
 import ProjectCard from './ProjectCard.astro';
 import { PROJECTS } from '../data/portfolio-data';
 
-const categories = [
-  'All',
-  'Streaming & Real-Time',
-  'Analytics Engineering',
-  'Data Warehousing',
-  'Machine Learning'
-];
+const categories = ['All', ...new Set(PROJECTS.map((project) => project.category))];
 ---
 
-<section id="projects" class="py-20 relative">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-      <div class="max-w-3xl space-y-3">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-mono text-xs">
-          <Icon name="database" size={14} />
-          <span>PRODUCTION IMPLEMENTATIONS</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Featured Engineering <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-300">Projects</span>
-        </h2>
-        <p class="text-slate-400 text-base">
-          Proven, production-modeled data pipelines, Medallion lakehouse warehouses, and analytics engineering implementations.
-        </p>
-      </div>
-
-      <!-- Filter Buttons -->
-      <div class="flex flex-wrap gap-1.5 p-1 rounded-xl bg-slate-900/90 border border-slate-800 self-start md:self-auto" role="group" aria-label="Filter Projects">
-        {categories.map((cat, idx) => (
-          <button 
-            type="button" 
-            data-category={cat}
-            class={`project-filter-btn px-3 py-1.5 rounded-lg text-xs font-mono transition-all ${idx === 0 ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 active' : 'text-slate-400 hover:text-white border border-transparent'}`}
+<section id="projects" class="px-6 sm:px-12 lg:px-20 py-16 md:py-20">
+  <div class="w-full max-w-[1400px] mx-auto grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-12 items-start">
+    <div class="xl:col-span-4 xl:sticky xl:top-8">
+      <p class="page-tags" aria-hidden="true">&lt;h1&gt;</p>
+      <h1 class="font-display text-6xl sm:text-7xl lg:text-[5.3rem] text-accent mb-3 leading-none">Projects</h1>
+      <p class="page-tags mb-8" aria-hidden="true">&lt;/h1&gt;</p>
+      <p class="text-white text-[17px] sm:text-lg leading-relaxed font-light">
+        A showcase of data engineering work across streaming platforms, medallion warehouses, dbt analytics, and SSIS dimensional models. Each card links to the matching GitHub repository.
+      </p>
+      <div class="flex flex-wrap gap-2 mt-6" data-filter-bar>
+        {categories.map((category) => (
+          <button
+            type="button"
+            class:list={['filter-btn', category === 'All' && 'active']}
+            data-filter={category}
           >
-            {cat}
+            {category}
           </button>
         ))}
       </div>
     </div>
 
-    <!-- Project Cards Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="projects-grid">
-      {PROJECTS.map((project) => (
-        <div class="project-item" data-category={project.category}>
-          <ProjectCard project={project} />
-        </div>
-      ))}
+    <div class="xl:col-span-8 xl:max-h-[78vh] xl:overflow-y-auto projects-scroll pr-1">
+      <div class="grid grid-cols-1 gap-6" data-projects-grid>
+        {PROJECTS.map((project) => (
+          <div data-category={project.category}>
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
     </div>
-
   </div>
 </section>
 
 <script>
-  const filterBtns = document.querySelectorAll('.project-filter-btn');
-  const projectItems = document.querySelectorAll<HTMLElement>('.project-item');
+  const buttons = document.querySelectorAll('[data-filter]');
+  const cards = document.querySelectorAll('[data-category]');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => {
-        b.classList.remove('active', 'bg-cyan-500/20', 'text-cyan-300', 'border-cyan-500/40');
-        b.classList.add('text-slate-400', 'border-transparent');
-      });
-
-      btn.classList.add('active', 'bg-cyan-500/20', 'text-cyan-300', 'border-cyan-500/40');
-      btn.classList.remove('text-slate-400', 'border-transparent');
-
-      const selectedCategory = btn.getAttribute('data-category');
-
-      projectItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
-        if (selectedCategory === 'All' || itemCategory === selectedCategory) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.getAttribute('data-filter') ?? 'All';
+      buttons.forEach((item) => item.classList.toggle('active', item === button));
+      cards.forEach((card) => {
+        const show = filter === 'All' || card.getAttribute('data-category') === filter;
+        card.classList.toggle('hidden', !show);
       });
     });
   });

@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found" description="The page you requested does not exist.">
+  <section class="min-h-[70vh] flex flex-col items-center justify-center px-6 text-center">
+    <p class="page-tags mb-4">&lt;h1&gt;</p>
+    <h1 class="font-display text-6xl text-accent">404</h1>
+    <p class="mt-4 text-slate-300">This route is not in the pipeline.</p>
+    <a href="/" class="flat-button mt-8">Back home</a>
+  </section>
+</BaseLayout>

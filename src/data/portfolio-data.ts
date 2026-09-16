@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   title: string;
   subtitle: string;
-  category: 'Streaming & Real-Time' | 'Analytics Engineering' | 'Data Warehousing' | 'Machine Learning';
+  category: 'Streaming & Real-Time' | 'Analytics Engineering' | 'Data Warehousing';
   featured: boolean;
   problem: string;
   solution: string;
@@ -13,6 +13,7 @@ export interface Project {
   liveUrl?: string;
   badge: string;
   accentColor: string;
+  year: string;
 }
 
 export interface SkillGroup {
@@ -76,6 +77,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     badge: "Flagship Architecture",
     accentColor: "cyan",
+    year: "2026",
     problem: "Live ADS-B flight data streams at massive volume from multiple sources with no unified platform for real-time anomaly detection or historical trend analysis, making it impossible to monitor flight delays, detect anomalies, or generate reliable operational insights.",
     solution: "Designed and implemented a dual-pipeline ADS-B flight data platform — a streaming pipeline for near real-time monitoring and anomaly detection, and a batch pipeline for historical analytics — unified through a Snowflake-centred warehouse with downstream ML scoring and BI reporting.",
     architectureDetails: [
@@ -96,7 +98,7 @@ export const PROJECTS: Project[] = [
       "Python", "Apache Kafka", "MinIO", "OpenSky API", "AWS S3", "Snowflake", 
       "ClickHouse", "Grafana", "Power BI", "SQL", "Medallion Architecture", "Star Schema"
     ],
-    githubUrl: "https://github.com/ahmedmohsenfawzy"
+    githubUrl: "https://github.com/mrmohamedsalah/Sky-Eye"
   },
   {
     id: "airbnb-analytics",
@@ -106,6 +108,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     badge: "Modern Data Stack",
     accentColor: "emerald",
+    year: "2026",
     problem: "Airbnb's raw listing and booking data is too fragmented for direct reporting, requiring a structured transformation layer before analysts can reliably track pricing trends, host performance, or occupancy patterns.",
     solution: "Built an end-to-end analytics engineering project on Airbnb data using dbt for data transformation and modelling, applying best practices such as staging, intermediate, and mart layers.",
     architectureDetails: [
@@ -121,7 +124,7 @@ export const PROJECTS: Project[] = [
       "Automated dbt tests and schema documentation"
     ],
     tools: ["Python", "dbt", "Dagster", "Snowflake", "SQL", "Analytics Engineering", "uv"],
-    githubUrl: "https://github.com/ahmedmohsenfawzy"
+    githubUrl: "https://github.com/ahmedmohsenfawzy/airbnb_dbt"
   },
   {
     id: "data-warehouse-etl",
@@ -131,6 +134,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     badge: "Enterprise Medallion",
     accentColor: "indigo",
+    year: "2025",
     problem: "Businesses running separate CRM and ERP systems accumulate siloed data that can't be joined or queried together, blocking any unified view of customers, products, and sales performance.",
     solution: "Architected a production-grade three-layer medallion data warehouse (Bronze → Silver → Gold) ingesting raw CSV data from CRM and ERP source systems.",
     architectureDetails: [
@@ -146,7 +150,7 @@ export const PROJECTS: Project[] = [
       "Optimized star schema analytical SQL views"
     ],
     tools: ["SQL Server", "T-SQL", "SSMS", "Star Schema Design", "Medallion Architecture", "Draw.io"],
-    githubUrl: "https://github.com/ahmedmohsenfawzy"
+    githubUrl: "https://github.com/ahmedmohsenfawzy/DataWarehouse-ETL-Pipeline"
   },
   {
     id: "bookstore-dwh",
@@ -156,6 +160,7 @@ export const PROJECTS: Project[] = [
     featured: false,
     badge: "Dimensional DW",
     accentColor: "amber",
+    year: "2026",
     problem: "A bookstore managing sales across hundreds of titles had no central view of revenue performance, making it impossible to identify top authors, track trends, or support data-driven purchasing decisions.",
     solution: "Designed and implemented a full data warehouse for a bookstore domain, modelling the source schema and building the dimensional model (fact and dimension tables) to support analytical reporting.",
     architectureDetails: [
@@ -171,32 +176,33 @@ export const PROJECTS: Project[] = [
       "Interactive Power BI executive dashboards"
     ],
     tools: ["SQL Server", "SSIS", "Power BI", "Dimensional Modelling", "SCD", "Draw.io"],
-    githubUrl: "https://github.com/ahmedmohsenfawzy"
+    githubUrl: "https://github.com/ahmedmohsenfawzy/book_store_model-SSIS-"
   },
   {
-    id: "skin-disease-analyzer",
-    title: "Skin Disease Analyzer — Deep Learning & Edge Inference",
-    subtitle: "Graduation Project (Grade: A+) — Ain Shams University",
-    category: "Machine Learning",
+    id: "brazilian-ecommerce",
+    title: "Brazilian E-commerce — dbt Analytics Project",
+    subtitle: "Olist marketplace transformations, tests, and consumption-ready marts",
+    category: "Analytics Engineering",
     featured: false,
-    badge: "Graduation Project · Grade A+",
+    badge: "dbt Analytics",
     accentColor: "rose",
-    problem: "Early detection of dermatological conditions requires fast, accessible diagnostic assistance capable of running on edge mobile devices without cloud latency.",
-    solution: "Developed and trained a multi-class skin cancer classification model using EfficientNetB3 and ResNet transfer learning on the HAM10000 dataset, then exported the model to TFLite for Flutter mobile on-device inference.",
+    year: "2026",
+    problem: "Olist Brazilian e-commerce data sits across orders, customers, products, payments, and reviews with no trusted transformation layer for sales, delivery, and seller performance reporting.",
+    solution: "Built a dbt project on the Brazilian e-commerce dataset with staging models, tested business logic, and marts that expose order, customer, and marketplace metrics for analytics.",
     architectureDetails: [
-      "Trained multi-class classification models leveraging EfficientNetB3 and ResNet transfer learning architectures.",
-      "Preprocessed and augmented high-resolution dermatoscopic images from the HAM10000 benchmark dataset.",
-      "Quantized and exported the trained model to TensorFlow Lite (TFLite) format.",
-      "Integrated into a Flutter cross-platform mobile application, enabling zero-latency, private on-device edge inference."
+      "Modeled source tables into staging models with consistent naming, types, and grain.",
+      "Applied dbt tests to protect uniqueness, not-null, and relationship integrity across orders and customers.",
+      "Built marts for sales, delivery SLAs, seller performance, and payment mix.",
+      "Documented models so analysts can query a single trusted layer instead of raw marketplace extracts."
     ],
     metrics: [
-      "Graduation Project Grade: A+",
-      "HAM10000 multi-class classification benchmark",
-      "Edge-optimized TFLite quantization",
-      "On-device mobile inference in Flutter"
+      "Staging → marts dbt layers",
+      "Schema tests on core entities",
+      "Marketplace order and seller metrics",
+      "Analyst-ready consumption models"
     ],
-    tools: ["Python", "TensorFlow", "Transfer Learning (EfficientNetB3, ResNet)", "TFLite", "Flutter", "HAM10000"],
-    githubUrl: "https://github.com/ahmedmohsenfawzy"
+    tools: ["dbt", "SQL", "Python", "Analytics Engineering", "Olist Dataset"],
+    githubUrl: "https://github.com/ahmedmohsenfawzy/brazilian_ecommerce"
   }
 ];
 
@@ -369,6 +375,58 @@ export const TIMELINE: ExperienceItem[] = [
     ],
     technologies: ["SQL", "Python", "Power BI", "Excel", "Data Analysis"]
   }
+];
+
+export const CLOUD_SKILLS = [
+  'Python',
+  'SQL',
+  'T-SQL',
+  'Snowflake',
+  'ClickHouse',
+  'Kafka',
+  'dbt',
+  'Airflow',
+  'Dagster',
+  'SSIS',
+  'SSAS',
+  'Spark',
+  'Power BI',
+  'Grafana',
+  'AWS',
+  'Azure',
+  'Databricks',
+  'Fabric',
+  'MinIO',
+  'Talend',
+  'Docker',
+  'Linux',
+  'Git',
+  'GitHub',
+  'Pandas',
+  'NumPy',
+  'Scikit-Learn',
+  'TensorFlow',
+  'Matplotlib',
+  'Seaborn',
+  'Excel',
+  'MongoDB',
+  'Bash',
+  'C++',
+  'Java',
+  'JavaScript',
+  'C#',
+  'ETL',
+  'ELT',
+  'Medallion',
+  'Star Schema',
+  'SCD',
+  'SQL Server',
+  'VS Code',
+  'OpenSky',
+  'CI/CD',
+  'Data Warehouse',
+  'Dimensional Modeling',
+  'uv'
 ];
 
 export const LANGUAGES_AND_SOFT_SKILLS = {

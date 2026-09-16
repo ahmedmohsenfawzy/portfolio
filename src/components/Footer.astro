@@ -26,7 +26,8 @@ const currentYear = new Date().getFullYear();
     <div class="flex items-center gap-4">
       <span>&copy; {currentYear} Ahmed EL-Tlawy</span>
       <a 
-        href="#" 
+        href="#top" 
+        id="back-to-top"
         class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-cyan-400 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400"
         aria-label="Back to top of page"
       >
@@ -38,3 +39,10 @@ const currentYear = new Date().getFullYear();
 
   </div>
 </footer>
+
+<script>
+  document.getElementById('back-to-top')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

@@ -1,0 +1,40 @@
+---
+import { PERSONAL_INFO } from '../data/portfolio-data';
+---
+
+<section class="px-6 sm:px-12 lg:px-20 py-16 md:py-24">
+  <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <p class="page-tags" aria-hidden="true">&lt;h1&gt;</p>
+      <h1 class="font-display text-6xl sm:text-7xl lg:text-[5.3rem] text-accent leading-none">About</h1>
+      <p class="page-tags" aria-hidden="true">&lt;/h1&gt;</p>
+
+      <p class="text-white text-[17px] sm:text-lg leading-relaxed max-w-2xl font-light">{PERSONAL_INFO.summary}</p>
+      <p class="text-white text-[17px] sm:text-lg leading-relaxed max-w-2xl font-light">
+        Based in {PERSONAL_INFO.location}. I build production-minded pipelines: Kafka fanout, Snowflake Medallion layers, ClickHouse OLAP, and analytics engineering with dbt and Dagster.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
+        {PERSONAL_INFO.stats.map((stat) => (
+          <div class="glass-card rounded-xl p-4">
+            <div class="text-[11px] tracking-widest uppercase text-accent">{stat.label}</div>
+            <div class="mt-1 text-sm text-white">{stat.value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 flex justify-center">
+      <div class="stage-cube" aria-hidden="true">
+        <div class="cubespinner">
+          <div class="face1">Python</div>
+          <div class="face2">SQL</div>
+          <div class="face3">Kafka</div>
+          <div class="face4">Snowflake</div>
+          <div class="face5">dbt</div>
+          <div class="face6">Airflow</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

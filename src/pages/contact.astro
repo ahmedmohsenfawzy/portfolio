@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Contact from '../components/Contact.astro';
+import { PERSONAL_INFO } from '../data/portfolio-data';
+---
+
+<BaseLayout
+  title={`Contact | ${PERSONAL_INFO.name}`}
+  description={`Get in touch with ${PERSONAL_INFO.name}.`}
+>
+  <Contact />
+</BaseLayout>

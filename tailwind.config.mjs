@@ -5,26 +5,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        dark: {
-          950: '#07090e',
-          900: '#0c1017',
-          850: '#111723',
-          800: '#171f30',
-          700: '#222d42',
-          600: '#334155',
+        navy: {
+          950: '#090a0f',
+          900: '#022c43',
+          850: '#0a3a54',
+          800: '#115173',
         },
-        cyan: {
-          400: '#38bdf8',
-          500: '#0ea5e9',
+        accent: {
+          DEFAULT: '#00ff7f',
+          muted: '#00cc66',
         },
-        emerald: {
-          400: '#34d399',
-          500: '#10b981',
-        },
+        gold: '#ffd700',
+        ink: '#181818',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
+        display: ['Oswald', 'Impact', 'sans-serif'],
+        sans: ['Inter', 'Helvetica Neue', 'system-ui', 'sans-serif'],
+        script: ['"La Belle Aurore"', 'cursive'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
     },
   },

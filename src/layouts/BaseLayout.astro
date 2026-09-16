@@ -1,8 +1,12 @@
 ---
 import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
 import { PERSONAL_INFO } from '../data/portfolio-data';
+import { starBoxShadow } from '../lib/stars';
+
+const starsSmall = starBoxShadow(900, 11);
+const starsMedium = starBoxShadow(250, 22);
+const starsLarge = starBoxShadow(90, 33);
 
 interface Props {
   title?: string;
@@ -11,14 +15,14 @@ interface Props {
 }
 
 const {
-  title = `${PERSONAL_INFO.name} | Data Engineer & Analytics Infrastructure`,
+  title = `${PERSONAL_INFO.name} | Data Engineer`,
   description = PERSONAL_INFO.summary,
-  image = "/og-image.png"
+  image = '/favicon.svg'
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://portfolio-ahmed-el-tlawy.vercel.app/");
+const siteOrigin = Astro.site ?? new URL('https://portfolio-ahmed-el-tlawy.vercel.app');
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
 
-// JSON-LD structured data for Google & technical search indexing
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -72,10 +76,9 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={PERSONAL_INFO.name} />
-    <meta name="theme-color" content="#07090e" />
+    <meta name="theme-color" content="#022c43" />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
@@ -83,51 +86,50 @@ const jsonLd = {
     <meta property="og:image" content={new URL(image, canonicalURL)} />
     <meta property="og:site_name" content={`${PERSONAL_INFO.name} Portfolio`} />
 
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, canonicalURL)} />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Google Fonts Optimization: Preconnect & Display Swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" 
-      rel="stylesheet" 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=La+Belle+Aurore&family=Oswald:wght@400;500;600&display=swap"
+      rel="stylesheet"
     />
 
-    <!-- Structured Data -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body class="bg-dark-950 text-slate-100 antialiased">
-    <!-- Accessible Skip Link -->
-    <a 
-      href="#main-content" 
-      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-cyan-400 text-slate-950 font-mono font-bold rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+  <body class="antialiased">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-24 z-[60] px-4 py-2 bg-accent text-black font-bold rounded-lg"
     >
       Skip to main content
     </a>
 
-    <!-- Header Navigation -->
-    <Header />
+    <div class="sky" aria-hidden="true">
+      <div class="stars stars-small" style={`box-shadow: ${starsSmall}`}></div>
+      <div class="stars stars-medium" style={`box-shadow: ${starsMedium}`}></div>
+      <div class="stars stars-large" style={`box-shadow: ${starsLarge}`}></div>
+    </div>
+    <Sidebar />
 
-    <!-- Main Content Slot -->
-    <main id="main-content" class="min-h-screen">
-      <slot />
-    </main>
+    <div class="relative z-10 min-h-screen md:pl-[80px] pt-16 md:pt-0">
+      <span class="page-tags hidden md:block absolute top-8 left-[88px]" aria-hidden="true">&lt;body&gt;</span>
+      <main id="main-content" class="relative min-h-screen">
+        <slot />
+      </main>
+      <span class="page-tags hidden md:block absolute bottom-6 left-[88px]" aria-hidden="true">
+        &lt;/body&gt;<br />&lt;/html&gt;
+      </span>
+    </div>
 
-    <!-- Footer -->
-    <Footer />
-
-    <!-- High-Performance Scroll Observer & Safe Smooth Anchor Scroll -->
     <script>
       const initPage = () => {
-        // Safe smooth scroll for anchor links only (avoids browser text selection deadlock)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
           anchor.addEventListener('click', (e) => {
             const href = anchor.getAttribute('href');
             if (href && href !== '#') {
@@ -140,27 +142,24 @@ const jsonLd = {
           });
         });
 
-        // Respect prefers-reduced-motion
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
+          document.querySelectorAll('.reveal-on-scroll').forEach((el) => el.classList.add('is-revealed'));
           return;
         }
 
         const observer = new IntersectionObserver((entries, obs) => {
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const el = entry.target;
-              el.classList.add('is-revealed');
-              obs.unobserve(el);
+              entry.target.classList.add('is-revealed');
+              obs.unobserve(entry.target);
             }
           });
         }, {
-          root: null,
           rootMargin: '0px 0px -40px 0px',
           threshold: 0.05
         });
 
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
       };
 
       if (document.readyState === 'loading') {

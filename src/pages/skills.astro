@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SkillsMatrix from '../components/SkillsMatrix.astro';
+import { PERSONAL_INFO } from '../data/portfolio-data';
+---
+
+<BaseLayout
+  title={`Skills | ${PERSONAL_INFO.name}`}
+  description="Data engineering skills across cloud warehouses, streaming, orchestration, and analytics."
+>
+  <SkillsMatrix />
+</BaseLayout>
